@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:jsonplaceholder_posts/app_messages.dart';
 import 'package:jsonplaceholder_posts/src/data/sources.dart';
 import 'package:jsonplaceholder_posts/src/domain/entities.dart';
 import 'package:jsonplaceholder_posts/src/domain/repositories.dart';
@@ -35,7 +36,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     } on AppException catch (e) {
       emit(PostError(message: e.message));
     } catch (e) {
-      emit(PostError(message: 'Unexpected error'));
+      emit(PostError(message: AppMessages.errorUnexpected));
     }
   }
 }

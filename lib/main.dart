@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
+import 'package:jsonplaceholder_posts/app_messages.dart';
 import 'package:jsonplaceholder_posts/colors.dart';
 import 'package:jsonplaceholder_posts/src/data/sources.dart';
 import 'package:jsonplaceholder_posts/src/ui/bloc/post_bloc.dart';
@@ -15,13 +17,15 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Somnio Software',
+      title: AppMessages.appName,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
         useMaterial3: true,
       ),
       home: BlocProvider(
-        create: (context) => PostBloc(PostApiRepository()),
+        create: (context) => PostBloc(PostApiRepository(
+          client: Client(),
+        )),
         child: BlocListener<PostBloc, PostState>(
           listener: (context, state) {
             if (state is PostError) {
@@ -29,7 +33,7 @@ class Application extends StatelessWidget {
                 content: Text(state.message),
                 actions: [
                   ElevatedButton(
-                    child: const Text('OK'),
+                    child: const Text(AppMessages.actionOk),
                     onPressed: () {
                       ScaffoldMessenger.of(context).clearMaterialBanners();
                     },

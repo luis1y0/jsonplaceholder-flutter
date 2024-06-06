@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jsonplaceholder_posts/app_messages.dart';
 import 'package:jsonplaceholder_posts/colors.dart';
 import 'package:jsonplaceholder_posts/src/domain/entities.dart';
 
@@ -17,7 +18,7 @@ class PostWidget extends StatelessWidget {
           width: 1,
         ),
       ),
-      margin: EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +39,7 @@ class PostWidget extends StatelessWidget {
                     horizontal: 8,
                   ),
                   child: const Text(
-                    'Community',
+                    AppMessages.tagCommunity,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w100,
@@ -70,12 +71,12 @@ class PostWidget extends StatelessWidget {
                   child: const Row(
                     children: [
                       Text(
-                        'Read more',
+                        AppMessages.actionReadMore,
                         style: TextStyle(
                           color: Colors.blue,
                         ),
                       ),
-                      const Icon(
+                      Icon(
                         Icons.arrow_right_alt_outlined,
                         color: Colors.blue,
                       ),
@@ -111,7 +112,7 @@ class PostWidget extends StatelessWidget {
                 children: [
                   RichText(
                     text: const TextSpan(
-                      text: 'Somnio Software',
+                      text: AppMessages.companyName,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
@@ -130,7 +131,7 @@ class PostWidget extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    'Google I/O',
+                    AppMessages.eventName,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
@@ -138,7 +139,7 @@ class PostWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '2024',
+                    AppMessages.eventYear,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 18,

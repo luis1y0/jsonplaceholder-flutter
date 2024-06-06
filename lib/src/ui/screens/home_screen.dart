@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jsonplaceholder_posts/app_messages.dart';
 import 'package:jsonplaceholder_posts/src/ui/bloc/post_bloc.dart';
 import 'package:jsonplaceholder_posts/src/ui/widgets/placeholder_tile.dart';
 import 'package:jsonplaceholder_posts/src/ui/widgets/post_widget.dart';
@@ -19,8 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const ListTile(
-          title: Text('Blog'),
-          subtitle: Text('Somnio Software'),
+          title: Text(AppMessages.screenTitle),
+          subtitle: Text(AppMessages.companyName),
         ),
       ),
       body: Column(
@@ -30,11 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
             destinations: const [
               NavigationDestination(
                 icon: Icon(Icons.home),
-                label: 'HOME',
+                label: AppMessages.tabHome,
               ),
               NavigationDestination(
-                icon: Icon(Icons.article),
-                label: 'POST',
+                icon: Icon(Icons.settings),
+                label: AppMessages.tabSettings,
               ),
             ],
             onDestinationSelected: (value) {
