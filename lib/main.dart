@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jsonplaceholder_posts/colors.dart';
 import 'package:jsonplaceholder_posts/src/data/sources.dart';
 import 'package:jsonplaceholder_posts/src/ui/bloc/post_bloc.dart';
 import 'package:jsonplaceholder_posts/src/ui/screens/home_screen.dart';
@@ -16,7 +17,7 @@ class Application extends StatelessWidget {
     return MaterialApp(
       title: 'Somnio Software',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
         useMaterial3: true,
       ),
       home: BlocProvider(

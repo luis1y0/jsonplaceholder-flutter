@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jsonplaceholder_posts/src/ui/bloc/post_bloc.dart';
 import 'package:jsonplaceholder_posts/src/ui/widgets/placeholder_tile.dart';
+import 'package:jsonplaceholder_posts/src/ui/widgets/post_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -50,43 +51,39 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (value) {
-                setState(() {
-                  _currentTab = value;
-                });
-              },
-              children: [
-                BlocBuilder<PostBloc, PostState>(
-                  buildWhen: (previous, current) => current is PostResult,
-                  builder: (context, state) {
-                    if (state is PostResult) {
-                      return ListView.builder(
-                        itemBuilder: (context, index) {
-                          if (index >= state.posts.length) {
-                            return const PlaceholderTile();
-                          }
-                          return ListTile(
-                            title: Text(
-                              state.posts[index].title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            onTap: () {},
-                          );
-                        },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (value) {
+                  setState(() {
+                    _currentTab = value;
+                  });
+                },
+                children: [
+                  BlocBuilder<PostBloc, PostState>(
+                    buildWhen: (previous, current) => current is PostResult,
+                    builder: (context, state) {
+                      if (state is PostResult) {
+                        return ListView.builder(
+                          itemBuilder: (context, index) {
+                            if (index >= state.posts.length) {
+                              return const PlaceholderTile();
+                            }
+                            return PostWidget(
+                              post: state.posts[index],
+                            );
+                          },
+                        );
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(),
                       );
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                ),
-                const Center(
-                  child: Text('Mi post'),
-                )
-              ],
+                    },
+                  ),
+                  const Placeholder(),
+                ],
+              ),
             ),
           ),
         ],
