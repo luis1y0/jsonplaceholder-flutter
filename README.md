@@ -1,16 +1,22 @@
-# jsonplaceholder_posts
+# About the project
 
-A new Flutter project.
+This app consumes the [jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com/posts)
+API, it uses BLoC to show a list of Posts, when the post
+list is succesfully retrieved,
+[BlocBuilder](https://github.com/mfs-luisortiz/jsonplaceholder-flutter/blob/f767688d8a989e42181136ac758475ed817098f4/lib/src/ui/screens/home_screen.dart#L65)
+is used to update the ListView, this ListView only is updated when there's new data for the post list:
 
-## Getting Started
+<img src="./docs/post-list.png" width="250">
 
-This project is a starting point for a Flutter application.
+It also shows when an error happens like a conecction
+error using a
+[BlocListener](https://github.com/mfs-luisortiz/jsonplaceholder-flutter/blob/f767688d8a989e42181136ac758475ed817098f4/lib/main.dart#L29)
+that allows us to show a
+Banner, the Banner is only shown when a new error state is produced:
 
-A few resources to get you started if this is your first Flutter project:
+<img src="./docs/error-connection.png" width="250">
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Unit testing is made with
+[Mockito](https://pub.dev/packages/mockito)
+to fake `http.Client` which allows to test the
+[PostApiRepository](./lib/src/data/sources.dart).
